@@ -1,0 +1,52 @@
+<h1>Currencies</h1>
+
+<h2>Convert Currency</h2>
+<%= form_with(url: currencies_path, method: :get, local: true) do |form| %>
+    <h3>Enter amount<h3>
+        <%= form.text_field :amount, style: 'border-radius: -2rem;' %>
+        <h3>currency to convert from</h3>
+        <select name="currency_to_convert">
+            <option value="Euro" selected="selected">Euro</option>
+        </select>
+        <h3>currency to convert to</h3>
+        <select name="currency_to_convert_to">
+        <option value="Peso" selected="selected">Peso</option>
+        </select>
+    <%= form.submit "Submit", class: "custom-button" %>
+<% end %>
+
+<h3> Result</h3>
+<%=  @rate if @rate.present? %>
+
+
+<h2>Local currencies</h2>
+<%= form_with(url: currencies_path, method: :get, local: true) do |form| %>
+    <select name="country">
+        <option value="France" selected="selected">France</option>
+        <option value="Mexico">Mexico</option>
+    </select>
+    <%= form.submit "Submit", class: "custom-button" %>
+<% end %>
+<% if @currencies.present? %>
+    <% @currencies.each do |currency| %>
+    <ul>
+        <li><%= currency %></li>
+    </ul>
+    <% end %>
+<% end %>
+
+<h2>Countries</h2>
+<%= form_with(url: currencies_path, method: :get, local: true) do |form| %>
+    <select name="currency">
+        <option value="Euro" selected="selected">Euro</option>
+        <option value="Peso">Peso</option>
+    </select>
+    <%= form.submit "Submit", class: "custom-button" %>
+<% end %>
+<% if @countries.present? %>
+    <% @countries.each do |country| %>
+    <ul>
+        <li><%= country %></li>
+    </ul>
+    <% end %>
+<% end %>
